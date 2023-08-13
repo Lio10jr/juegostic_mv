@@ -1,0 +1,7 @@
+{
+  "name": "juegostic_mv",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
