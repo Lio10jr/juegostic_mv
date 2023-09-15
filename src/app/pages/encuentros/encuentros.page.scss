@@ -1,0 +1,43 @@
+.menu {
+    font-weight: bold;
+    color: #5260ff;
+}
+.title {
+    font-weight: bold;
+    color: #5260ff;
+}
+ion-grid {
+    border: 1px solid rgb(70, 74, 74);
+    padding: 0px;
+    margin-bottom: 3%;
+    .title {
+        text-align: center;
+        font-weight: bold;
+        margin: 0 auto;
+    }
+    ion-row {
+        border-bottom: 1px solid rgb(53, 56, 56);
+        :hover{
+            background: rgb(53, 56, 56);
+        }
+        
+        ion-col {
+            text-align: center;
+          }
+    }
+    .row-header {
+        background: rgb(53, 56, 56);
+    }
+    .row-fecha {
+        font-size: 13px;
+        font-style: italic;
+        padding: 0px;
+        icon-col {
+            padding: 0px;
+        }
+        border-bottom: 2px solid aliceblue;
+    }
+}
+ion-footer {
+    text-align: center;
+}

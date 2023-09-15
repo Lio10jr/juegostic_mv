@@ -1,0 +1,35 @@
+.menu {
+    font-weight: bold;
+    color: #5260ff;
+}
+.title {
+    font-weight: bold;
+    color: #5260ff;
+}
+
+ion-content {
+    padding: 15px;
+    ion-grid {
+        border: 1px solid rgb(53, 56, 56);
+        padding: 0px;
+        margin-bottom: 3%;
+        ion-text {
+            h6 {
+                padding: 3% 0;
+                margin: 0;
+                background: rgb(62, 65, 65);
+                font-weight: bold;
+            }
+        }
+    
+        ion-row {
+            border-bottom: 1px solid rgb(53, 56, 56);
+            :hover{
+                background: rgb(53, 56, 56);
+            }
+        }
+    }
+}
+ion-footer {
+    text-align: center;
+}

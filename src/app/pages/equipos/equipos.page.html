@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-text class="ion-text-center">
+    <h5>Filtrar por campeonato</h5>
+  </ion-text>
+  <ion-list>
+    <ion-item>
+      <ion-select interface="action-sheet" placeholder="Elija un Campeonato" (ionChange)="onSelectCampeonato($event)">
+        <ion-select-option *ngFor="let campeonato of CampeonatoArray" [value]="campeonato.pk_idcamp">{{ campeonato.name_camp }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngFor="let equipo of EquiposFiltrados">
+    <ion-card-header>
+      <ion-card-title>{{equipo.nom_equ}}</ion-card-title>
+    </ion-card-header>
+    <ion-item>
+      <ion-thumbnail *ngIf="equipo.logo" slot="start">
+        <img alt="equipo" [src]="apiUrlImg  + equipo.logo" width="50" height="50" />
+      </ion-thumbnail>
+      <ion-thumbnail *ngIf="!equipo.logo" slot="start">
+        <img alt="equipo" src="./assets/img/Logo_TIC_IS.png" width="50" height="50"/>
+      </ion-thumbnail>
+      <ion-card-content>
+        <strong>Semestre: </strong> {{equipo.semestre | titlecase}} <br> <strong>Representante:</strong> {{equipo.representante}}
+      </ion-card-content>
+      <ion-button (click)="verJugadores(equipo.nom_equ,equipo.pk_idequ)">Jugadores</ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="title">Juegos TIC</ion-title>
+  </ion-toolbar>
+</ion-footer>
+

@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-text class="ion-text-center">
+    <h5>Filtrar por campeonato</h5>
+  </ion-text>
+
+  <ion-list>
+    <ion-item>
+      <ion-select label="Elija un Campeonato" label-placement="floating" (ionChange)="onSelectCampeonato($event)">
+        <ion-select-option *ngFor="let campeonato of CampeonatoArray" [value]="campeonato.pk_idcamp">{{ campeonato.name_camp }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid *ngFor="let EncuentroItem of EncuentrosArrayFiltro | keyvalue">
+    <ng-container  *ngIf="EncuentroItem.key !== null">
+      <ion-row class="row-header title">
+        <ion-col>{{EncuentroItem.key === '1' ? "Fase de Grupos" : EncuentroItem.key === '2' ?
+          "Octavos de Final" : EncuentroItem.key === '3' ? "Cuartos de Final" : EncuentroItem.key === '4' ?
+          "SemiFinal" : "Final"}} </ion-col>
+      </ion-row>
+      <ion-row class="row-header">
+        <ion-col size-md="6">Local</ion-col>
+        <ion-col size-md="1">Gol</ion-col>
+        <ion-col size-md="2">Vs</ion-col>
+        <ion-col size-md="1">Gol</ion-col>
+        <ion-col size-md="12">Visitante</ion-col>
+      </ion-row>
+      <ng-container  *ngFor="let Item of EncuentroItem.value">
+        <ng-container *ngIf="Item.estado_encuentro !== 'Proximo'">
+          <ion-row>
+            <ion-col size-md="6">{{Item.fk_idequlocal}}</ion-col>
+            <ion-col size-md="1">{{Item.goleslocal}}</ion-col>
+            <ion-col size-md="2">-</ion-col>
+            <ion-col size-md="1">{{Item.golesvisit}}</ion-col>
+            <ion-col size-md="12">{{Item.fk_idequvisit}}</ion-col>
+          </ion-row>
+          <ion-row class="row-fecha">
+            <ion-col>{{ Item.numgrupo !== 0 ? 'Grupo #' + Item.numgrupo : '' }}</ion-col>
+            <ion-col style="background: red;">{{ Item.estado_encuentro }}</ion-col>
+            <ion-col size-md="6">{{Item.fecha_hora | date:'dd-MM-yyyy' }}</ion-col>
+          </ion-row>
+          <hr class="hr">
+        </ng-container>
+      </ng-container>
+      
+    </ng-container>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border" color="tertiary">
+  <ion-toolbar>
+    <ion-title class="title ion-text-center">Juegos TIC</ion-title>
+  </ion-toolbar>
+</ion-footer>
